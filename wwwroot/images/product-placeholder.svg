@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<rect width="800" height="600" fill="#f7f8fa"/>
+<rect x="280" y="150" width="240" height="220" rx="24" fill="#ffffff" stroke="#e2e6ed" stroke-width="8"/>
+<path d="M330 320l55-65 45 45 35-40 55 60" fill="none" stroke="#d71920" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="365" cy="210" r="18" fill="#f5c7ca"/>
+<text x="400" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#7b8496">ẢNH SẢN PHẨM</text>
+<text x="400" y="465" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#9aa2b1">Gia Dụng Tốt</text>
+</svg>

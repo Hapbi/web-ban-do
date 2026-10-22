@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+<rect width="400" height="400" rx="28" fill="#F4EDFF"/>
+<circle cx="330" cy="65" r="45" fill="#8565C9" opacity=".08"/>
+<circle cx="65" cy="330" r="65" fill="#8565C9" opacity=".06"/>
+
+      <path d="M100 135 Q100 105 135 105 H226 Q270 105 270 150 V185 H226 V157 H145 V190 H120 Q100 190 100 170Z" fill="#8565c9" stroke="#6147a2" stroke-width="6"/>
+      <rect x="121" y="190" width="53" height="115" rx="20" transform="rotate(-9 121 190)" fill="#39465a"/>
+      <rect x="146" y="210" width="17" height="48" rx="8" transform="rotate(-9 146 210)" fill="#9b87d9"/>
+      <path d="M270 140 H322 V176 H270" fill="#c8d0dc"/><circle cx="296" cy="158" r="10" fill="#8794a7"/>
+      <path d="M77 137 Q59 151 77 165 M60 128 Q36 151 60 174" fill="none" stroke="#c4b5fd" stroke-width="7" stroke-linecap="round"/>
+    
+<text x="200" y="355" font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#8565C9" letter-spacing="1">MÁY SẤY TÓC</text>
+<text x="200" y="378" font-family="Arial,sans-serif" font-size="10" text-anchor="middle" fill="#7d8797">Gia Dụng Tốt</text>
+</svg>

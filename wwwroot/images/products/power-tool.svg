@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+<rect width="400" height="400" rx="28" fill="#FFF7DF"/>
+<circle cx="330" cy="65" r="45" fill="#D69A13" opacity=".08"/>
+<circle cx="65" cy="330" r="65" fill="#D69A13" opacity=".06"/>
+
+      <path d="M120 120 Q120 105 140 105 H252 Q275 105 275 128 V178 H236 V157 H165 V199 H125 V145 Q125 130 120 120Z" fill="#e5aa1c" stroke="#9b6d08" stroke-width="6"/>
+      <rect x="160" y="168" width="82" height="44" rx="9" fill="#384557"/>
+      <path d="M181 210 H236 L255 278 Q258 294 240 298 H195 Q180 298 178 281Z" fill="#39465a"/>
+      <rect x="189" y="229" width="46" height="18" rx="6" fill="#f5c64d"/>
+      <path d="M275 137 H321 V151 H275" fill="#b9c3d0"/><path d="M320 137 H350 V151 H320" fill="#7f8b9b"/>
+      <path d="M122 121 L94 121 V140 H122" fill="#6b7788"/>
+    
+<text x="200" y="355" font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#D69A13" letter-spacing="1">DỤNG CỤ CẦM TAY</text>
+<text x="200" y="378" font-family="Arial,sans-serif" font-size="10" text-anchor="middle" fill="#7d8797">Gia Dụng Tốt</text>
+</svg>

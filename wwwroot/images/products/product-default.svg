@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+<rect width="400" height="400" rx="28" fill="#F1F4F8"/>
+<circle cx="330" cy="65" r="45" fill="#D71920" opacity=".08"/>
+<circle cx="65" cy="330" r="65" fill="#D71920" opacity=".06"/>
+
+      <rect x="110" y="92" width="180" height="178" rx="28" fill="#fff" stroke="#dce2eb" stroke-width="7"/>
+      <path d="M150 215 L183 177 L214 207 L241 179 L270 215" fill="none" stroke="#d71920" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="170" cy="142" r="12" fill="#f6c3c7"/>
+    
+<text x="200" y="355" font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#D71920" letter-spacing="1">GIA DỤNG TỐT</text>
+<text x="200" y="378" font-family="Arial,sans-serif" font-size="10" text-anchor="middle" fill="#7d8797">Gia Dụng Tốt</text>
+</svg>

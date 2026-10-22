@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+<rect width="400" height="400" rx="28" fill="#EAF4FF"/>
+<circle cx="330" cy="65" r="45" fill="#3C82C4" opacity=".08"/>
+<circle cx="65" cy="330" r="65" fill="#3C82C4" opacity=".06"/>
+
+      <ellipse cx="200" cy="300" rx="105" ry="18" fill="#dce5ef"/>
+      <ellipse cx="200" cy="235" rx="103" ry="67" fill="#303c4f"/>
+      <ellipse cx="200" cy="224" rx="95" ry="57" fill="#f8fafc" stroke="#cbd5e1" stroke-width="5"/>
+      <ellipse cx="200" cy="220" rx="70" ry="40" fill="#e9eef5"/>
+      <circle cx="200" cy="218" r="18" fill="#3c82c4"/><circle cx="200" cy="218" r="8" fill="#bde4ff"/>
+      <rect x="115" y="276" width="30" height="13" rx="6" fill="#283548"/><rect x="255" y="276" width="30" height="13" rx="6" fill="#283548"/>
+      <path d="M132 239 L104 264 M268 239 L296 264" stroke="#3c82c4" stroke-width="7" stroke-linecap="round"/>
+    
+<text x="200" y="355" font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#3C82C4" letter-spacing="1">ROBOT HÚT BỤI</text>
+<text x="200" y="378" font-family="Arial,sans-serif" font-size="10" text-anchor="middle" fill="#7d8797">Gia Dụng Tốt</text>
+</svg>

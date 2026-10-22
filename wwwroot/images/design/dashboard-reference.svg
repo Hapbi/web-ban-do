@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+<defs>
+  <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3262E"/><stop offset="1" stop-color="#BD1520"/></linearGradient>
+  <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0646B"/><stop offset="1" stop-color="#D71920"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#243047" flood-opacity=".055"/></filter>
+  <style>
+    .font{font-family:Inter,Arial,sans-serif}.title{font-size:28px;font-weight:750;fill:#20283A}.muted{font-size:12px;fill:#8B94A7}.label{font-size:12px;fill:#7C8597}.value{font-size:25px;font-weight:750;fill:#222B3D}.paneltitle{font-size:15px;font-weight:700;fill:#283246}.small{font-size:10px;fill:#929AAB}.nav{font-size:13px;fill:#667085}.tablehead{font-size:10px;font-weight:700;letter-spacing:.6px;fill:#9AA2B1}.tabletext{font-size:12px;fill:#596276}.strong{font-size:12px;font-weight:700;fill:#3A4458}
+  </style>
+</defs>
+<!-- canvas -->
+<rect width="1440" height="1000" fill="#F5F6FA"/>
+<!-- top header -->
+<rect width="1440" height="76" fill="#FFFFFF"/>
+<rect y="74" width="1440" height="2" fill="#E3262E"/>
+<g class="font">
+  <rect x="28" y="17" width="42" height="42" rx="12" fill="url(#red)"/>
+  <path d="M38 39 L49 29 L60 39 M41 38 V49 H47 V42 H52 V49 H57 V38" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="82" y="44" font-size="20" font-weight="800" fill="#20283A">GIA DỤNG <tspan fill="#D71920">TỐT</tspan></text>
+  <rect x="440" y="18" width="430" height="40" rx="10" fill="#F7F8FB" stroke="#E8EBF2"/>
+  <circle cx="460" cy="38" r="6" stroke="#9AA2B1" stroke-width="1.8" fill="none"/><path d="M464 42 L469 47" stroke="#9AA2B1" stroke-width="1.8"/>
+  <text x="480" y="42" font-size="12" fill="#A0A7B5">Tìm dụng cụ, thiết bị, đồ gia dụng...</text>
+  <circle cx="1331" cy="38" r="18" fill="#FFF0F1"/><text x="1325" y="43" font-size="14" fill="#D71920">♙</text>
+  <text x="1360" y="35" font-size="12" font-weight="700" fill="#344054">Quản trị viên</text><text x="1360" y="49" font-size="10" fill="#8B94A7">Admin</text>
+</g>
+<!-- sidebar -->
+<rect x="24" y="98" width="236" height="878" rx="16" fill="#FFFFFF" stroke="#E7EAF0" filter="url(#shadow)"/>
+<g class="font">
+  <text x="44" y="131" font-size="10" font-weight="800" letter-spacing="1.4" fill="#A0A7B5">MENU QUẢN LÝ</text>
+  <rect x="36" y="148" width="212" height="43" rx="10" fill="url(#red)"/>
+  <rect x="51" y="162" width="14" height="14" rx="3" fill="#fff" opacity=".95"/><path d="M54 172 L58 168 L62 171" stroke="#D71920" stroke-width="1.5" fill="none"/>
+  <text x="78" y="175" font-size="13" font-weight="700" fill="#FFFFFF">Dashboard</text>
+  <text x="52" y="229" font-size="10" font-weight="800" letter-spacing="1.1" fill="#A0A7B5">CỬA HÀNG</text>
+  <g class="nav">
+    <rect x="36" y="242" width="212" height="40" rx="9" fill="#FFFFFF"/><text x="53" y="267" fill="#667085">▦</text><text x="78" y="267">Sản phẩm</text>
+    <rect x="36" y="286" width="212" height="40" rx="9" fill="#FFFFFF"/><text x="53" y="311">▤</text><text x="78" y="311">Đơn hàng</text>
+    <rect x="36" y="330" width="212" height="40" rx="9" fill="#FFFFFF"/><text x="53" y="355">▣</text><text x="78" y="355">Tồn kho</text>
+    <rect x="36" y="374" width="212" height="40" rx="9" fill="#FFFFFF"/><text x="53" y="399">♙</text><text x="78" y="399">Khách hàng</text>
+  </g>
+  <text x="52" y="454" font-size="10" font-weight="800" letter-spacing="1.1" fill="#A0A7B5">HỆ THỐNG</text>
+  <g class="nav">
+    <text x="53" y="490">♧</text><text x="78" y="490">Người dùng &amp; vai trò</text>
+    <text x="53" y="534">⚙</text><text x="78" y="534">Cấu hình shop / QR</text>
+    <text x="53" y="578">⌂</text><text x="78" y="578">Về cửa hàng</text>
+  </g>
+  <line x1="44" y1="920" x2="240" y2="920" stroke="#EEF0F5"/>
+  <circle cx="58" cy="946" r="15" fill="#FCE7E8"/><text x="53" y="950" font-size="11" font-weight="700" fill="#D71920">QT</text>
+  <text x="82" y="943" font-size="12" font-weight="700" fill="#344054">Quản trị viên</text><text x="82" y="957" font-size="10" fill="#9AA2B1">Đang hoạt động</text>
+</g>
+<!-- main content -->
+<g class="font">
+  <text x="292" y="128" class="muted" font-weight="700" letter-spacing="1.3">TRUNG TÂM QUẢN LÝ</text>
+  <circle cx="280" cy="124" r="4" fill="#D71920"/>
+  <text x="280" y="168" class="title">Dashboard</text>
+  <text x="280" y="192" class="muted">Xin chào Quản trị viên · Đây là tình hình cửa hàng của bạn.</text>
+  <rect x="1138" y="135" width="125" height="38" rx="9" fill="#FFFFFF" stroke="#E7EAF0"/>
+  <text x="1154" y="158" font-size="12" fill="#667085">◷  19/10/2026</text>
+  <rect x="1274" y="135" width="142" height="38" rx="9" fill="url(#red)"/>
+  <text x="1291" y="158" font-size="12" font-weight="700" fill="#FFFFFF">＋ Thêm sản phẩm</text>
+  <!-- stats -->
+  <text x="280" y="231" font-size="17" font-weight="750" fill="#222B3D">Tổng quan kinh doanh</text>
+  <g filter="url(#shadow)">
+    <rect x="280" y="249" width="274" height="142" rx="14" fill="#FFFFFF" stroke="#E8EBF2"/>
+    <rect x="570" y="249" width="274" height="142" rx="14" fill="#FFFFFF" stroke="#E8EBF2"/>
+    <rect x="860" y="249" width="274" height="142" rx="14" fill="#FFFFFF" stroke="#E8EBF2"/>
+    <rect x="1150" y="249" width="266" height="142" rx="14" fill="#FFFFFF" stroke="#E8EBF2"/>
+  </g>
+  <g>
+    <text x="300" y="279" class="label">Doanh thu hôm nay</text><rect x="500" y="263" width="34" height="34" rx="10" fill="#FFF0F1"/><text x="510" y="286" font-size="19" font-weight="800" fill="#D71920">₫</text>
+    <text x="300" y="322" class="value">1.250.000đ</text><circle cx="304" cy="350" r="3" fill="#1EAE77"/><text x="314" y="354" class="small">Doanh thu đơn đã thanh toán</text>
+    <text x="590" y="279" class="label">Doanh thu tháng này</text><rect x="790" y="263" width="34" height="34" rx="10" fill="#F0EDFF"/><text x="800" y="286" font-size="18" fill="#7665DF">▦</text>
+    <text x="590" y="322" class="value">24.890.000đ</text><circle cx="594" cy="350" r="3" fill="#1EAE77"/><text x="604" y="354" class="small">Từ đầu tháng đến hiện tại</text>
+    <text x="880" y="279" class="label">Tổng doanh thu</text><rect x="1080" y="263" width="34" height="34" rx="10" fill="#EAF4FF"/><text x="1090" y="286" font-size="18" fill="#3185D8">↗</text>
+    <text x="880" y="322" class="value">86.420.000đ</text><text x="880" y="354" class="small">42 đơn đã thanh toán</text>
+    <text x="1170" y="279" class="label">Đơn chờ xác nhận</text><rect x="1362" y="263" width="34" height="34" rx="10" fill="#FFF4DF"/><text x="1371" y="286" font-size="18" fill="#C98B19">◷</text>
+    <text x="1170" y="322" class="value">08</text><text x="1170" y="354" class="small">4.250.000đ chờ xử lý</text>
+  </g>
+  <!-- charts -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="411" width="690" height="304" rx="14" fill="#FFFFFF" stroke="#E7EAF0"/>
+    <rect x="986" y="411" width="430" height="304" rx="14" fill="#FFFFFF" stroke="#E7EAF0"/>
+  </g>
+  <text x="302" y="444" class="paneltitle">Biểu đồ doanh thu</text><text x="302" y="464" class="muted">Doanh thu 7 ngày gần nhất</text>
+  <rect x="871" y="430" width="74" height="25" rx="6" fill="#FFF0F1"/><text x="884" y="446" font-size="9" font-weight="800" fill="#C91B24">7 NGÀY</text>
+  <!-- chart grid -->
+  <g stroke="#E9ECF2" stroke-dasharray="4 5"><line x1="350" y1="500" x2="940" y2="500"/><line x1="350" y1="545" x2="940" y2="545"/><line x1="350" y1="590" x2="940" y2="590"/><line x1="350" y1="635" x2="940" y2="635"/></g>
+  <g class="small" text-anchor="end"><text x="340" y="504">5tr</text><text x="340" y="549">3,5tr</text><text x="340" y="594">2tr</text><text x="340" y="639">0đ</text></g>
+  <g>
+    <rect x="378" y="574" width="38" height="61" rx="5" fill="url(#bar)"/><rect x="456" y="543" width="38" height="92" rx="5" fill="url(#bar)"/><rect x="534" y="591" width="38" height="44" rx="5" fill="url(#bar)"/><rect x="612" y="518" width="38" height="117" rx="5" fill="url(#bar)"/><rect x="690" y="558" width="38" height="77" rx="5" fill="url(#bar)"/><rect x="768" y="485" width="38" height="150" rx="5" fill="url(#bar)"/><rect x="846" y="530" width="38" height="105" rx="5" fill="url(#bar)"/>
+    <g class="small" text-anchor="middle"><text x="397" y="654">13/10</text><text x="475" y="654">14/10</text><text x="553" y="654">15/10</text><text x="631" y="654">16/10</text><text x="709" y="654">17/10</text><text x="787" y="654">18/10</text><text x="865" y="654">19/10</text></g>
+  </g>
+  <line x1="302" y1="677" x2="948" y2="677" stroke="#F0F1F5"/><circle cx="310" cy="696" r="4" fill="#D71920"/><text x="321" y="700" class="small">Doanh thu đã thanh toán</text><text x="794" y="700" font-size="11" font-weight="700" fill="#465065">Tổng: 24.890.000đ</text>
+  <text x="1008" y="444" class="paneltitle">Tình trạng đơn hàng</text><text x="1008" y="464" class="muted">Phân bổ đơn hàng theo trạng thái</text>
+  <!-- donut -->
+  <circle cx="1200" cy="553" r="68" fill="none" stroke="#F0F1F5" stroke-width="19"/>
+  <circle cx="1200" cy="553" r="68" fill="none" stroke="#D71920" stroke-width="19" stroke-dasharray="172 255" transform="rotate(-90 1200 553)" stroke-linecap="round"/>
+  <circle cx="1200" cy="553" r="68" fill="none" stroke="#7867E8" stroke-width="19" stroke-dasharray="105 322" stroke-dashoffset="-180" transform="rotate(-90 1200 553)" stroke-linecap="round"/>
+  <circle cx="1200" cy="553" r="68" fill="none" stroke="#2FC49A" stroke-width="19" stroke-dasharray="70 357" stroke-dashoffset="-294" transform="rotate(-90 1200 553)" stroke-linecap="round"/>
+  <text x="1200" y="549" text-anchor="middle" font-size="27" font-weight="800" fill="#263147">42</text><text x="1200" y="570" text-anchor="middle" font-size="10" fill="#8B94A7">ĐƠN HÀNG</text>
+  <circle cx="1035" cy="652" r="5" fill="#D71920"/><text x="1047" y="656" class="small">Đã thanh toán</text><text x="1141" y="656" font-size="10" font-weight="700" fill="#465065">24</text>
+  <circle cx="1035" cy="677" r="5" fill="#7867E8"/><text x="1047" y="681" class="small">Đang xử lý</text><text x="1141" y="681" font-size="10" font-weight="700" fill="#465065">12</text>
+  <circle cx="1222" cy="652" r="5" fill="#2FC49A"/><text x="1234" y="656" class="small">Đang giao</text><text x="1348" y="656" font-size="10" font-weight="700" fill="#465065">6</text>
+  <!-- inventory -->
+  <text x="280" y="758" font-size="17" font-weight="750" fill="#222B3D">Tổng quan tồn kho</text><text x="1305" y="758" font-size="12" font-weight="700" fill="#C91B24">Quản lý sản phẩm →</text>
+  <g filter="url(#shadow)">
+    <rect x="280" y="777" width="267" height="88" rx="12" fill="#FFFFFF" stroke="#E8EBF2"/><rect x="560" y="777" width="267" height="88" rx="12" fill="#FFFFFF" stroke="#E8EBF2"/><rect x="840" y="777" width="267" height="88" rx="12" fill="#FFFFFF" stroke="#E8EBF2"/><rect x="1120" y="777" width="296" height="88" rx="12" fill="#FFFFFF" stroke="#E8EBF2"/>
+  </g>
+  <rect x="297" y="796" width="39" height="39" rx="10" fill="#EEF4FF"/><text x="308" y="821" font-size="18" fill="#377BD0">▣</text><text x="349" y="803" class="small">Tổng sản phẩm</text><text x="349" y="831" font-size="23" font-weight="800" fill="#283246">128</text><text x="349" y="849" font-size="9" fill="#A0A7B5">Trong danh sách kho</text>
+  <rect x="577" y="796" width="39" height="39" rx="10" fill="#E8F8F0"/><text x="589" y="821" font-size="18" font-weight="800" fill="#169967">✓</text><text x="629" y="803" class="small">Còn hàng</text><text x="629" y="831" font-size="23" font-weight="800" fill="#283246">110</text><text x="629" y="849" font-size="9" fill="#A0A7B5">Tồn kho trên 5 sản phẩm</text>
+  <rect x="857" y="796" width="39" height="39" rx="10" fill="#FFF5DF"/><text x="871" y="821" font-size="18" font-weight="800" fill="#C68B18">!</text><text x="909" y="803" class="small">Sắp hết hàng</text><text x="909" y="831" font-size="23" font-weight="800" fill="#283246">12</text><text x="909" y="849" font-size="9" fill="#A0A7B5">Tồn kho từ 1 đến 5</text>
+  <rect x="1137" y="796" width="39" height="39" rx="10" fill="#FFF0F1"/><text x="1150" y="821" font-size="18" font-weight="800" fill="#D71920">×</text><text x="1189" y="803" class="small">Hết hàng</text><text x="1189" y="831" font-size="23" font-weight="800" fill="#283246">6</text><text x="1189" y="849" font-size="9" fill="#A0A7B5">Cần nhập thêm hàng</text>
+  <!-- table -->
+  <rect x="280" y="881" width="1136" height="91" rx="12" fill="#FFFFFF" stroke="#E7EAF0"/>
+  <text x="300" y="906" class="paneltitle">Sản phẩm cần theo dõi</text><text x="1290" y="906" font-size="11" font-weight="700" fill="#C91B24">Xem tất cả →</text>
+  <rect x="281" y="918" width="1134" height="28" fill="#FAFBFC"/>
+  <text x="300" y="936" class="tablehead">SẢN PHẨM</text><text x="770" y="936" class="tablehead">DANH MỤC</text><text x="1015" y="936" class="tablehead">TỒN KHO</text><text x="1160" y="936" class="tablehead">TÌNH TRẠNG</text>
+  <rect x="300" y="955" width="25" height="10" rx="3" fill="#F2F4F8"/><text x="335" y="965" class="tabletext">Robot hút bụi lau nhà</text><text x="770" y="965" class="tabletext">Đồ gia dụng</text><text x="1015" y="965" class="strong">10 sản phẩm</text><rect x="1160" y="951" width="72" height="20" rx="6" fill="#E9F8F0"/><text x="1172" y="964" font-size="9" font-weight="700" fill="#168557">● Còn hàng</text>
+</g>
+</svg>
