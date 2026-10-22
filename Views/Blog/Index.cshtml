@@ -1,0 +1,30 @@
+@model List<BlogPost>
+@{ ViewData["Title"] = "Blog"; }
+
+<div class="container blog-page">
+    <div class="page-header"><h1>📝 Blog & Tin tức</h1></div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state"><div class="empty-icon">📭</div><h3>Chưa có bài viết</h3></div>
+    }
+    else
+    {
+        <div class="blog-grid">
+            @foreach (var p in Model)
+            {
+                <a href="/blog/@p.Slug" class="blog-card reveal">
+                    <img src="@p.CoverImage" alt="@p.Title" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+                    <div class="blog-body">
+                        <span class="blog-cat">@p.Category</span>
+                        <h3>@p.Title</h3>
+                        <p>@p.Summary</p>
+                        <div class="blog-meta">@p.PublishedAt?.ToString("dd/MM/yyyy") · @p.ViewCount lượt xem</div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</div>
+
+

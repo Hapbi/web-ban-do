@@ -1,0 +1,25 @@
+@model SellerListingVM
+@{ ViewData["Title"] = "Kênh bán hàng"; }
+<div class="container seller-page">
+    <header class="seller-hero"><div><span class="eyebrow">BTVH MARKETPLACE</span><h1>Gian hàng của bạn</h1><p>Đăng sản phẩm và theo dõi kết quả kiểm duyệt ngay tại đây.</p></div><a href="/kenh-ban-hang/dang-san-pham" class="btn-primary">＋ Đăng sản phẩm</a></header>
+    <div class="stat-grid seller-stats"><div class="stat-card-new stat-amber"><div class="stat-top">Chờ duyệt</div><div class="stat-value">@Model.PendingCount</div></div><div class="stat-card-new stat-green"><div class="stat-top">Đã duyệt</div><div class="stat-value">@Model.ApprovedCount</div></div><div class="stat-card-new stat-red"><div class="stat-top">Cần chỉnh sửa / đã rút</div><div class="stat-value">@Model.RejectedCount</div></div></div>
+    <div class="seller-list">
+    @foreach (var p in Model.Listings)
+    {
+        <article class="seller-listing-card">
+            <img src="@p.PrimaryImage" alt="@p.Name" loading="lazy" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+            <div class="seller-listing-main"><h3>@p.Name</h3><p class="muted small">@p.Brand?.Name · @p.Category?.Name · Tạo ngày @p.CreatedAt.ToString("dd/MM/yyyy")</p><p>@p.CurrentPrice.ToString("N0")đ · Còn @p.Stock sản phẩm</p>
+                @if (p.ListingStatus == ListingStatus.Pending) { <span class="badge badge-warning">⏳ Chờ duyệt</span> }
+                else if (p.ListingStatus == ListingStatus.Approved) { <span class="badge badge-success">✓ Đã duyệt / đang hiển thị</span> }
+                else { <span class="badge badge-danger">Cần xem lại</span> }
+                @if (!string.IsNullOrWhiteSpace(p.RejectReason)) { <p class="seller-reject-reason"><strong>Ghi chú kiểm duyệt:</strong> @p.RejectReason</p> }
+            </div>
+            @if (p.ListingStatus != ListingStatus.Approved)
+            {
+                <div class="seller-listing-actions"><a href="/kenh-ban-hang/@p.Id/sua" class="btn-ghost">Sửa / gửi lại</a><form method="post" action="/kenh-ban-hang/@p.Id/rut-tin" onsubmit="return confirm('Rút tin đăng này?')"><button class="link-secondary" type="submit">Rút tin</button></form></div>
+            }
+        </article>
+    }
+    @if (!Model.Listings.Any()) { <div class="empty-state"><div class="empty-icon">🛍️</div><h2>Anh chưa đăng sản phẩm nào</h2><p class="muted">Tin đăng sẽ ở trạng thái chờ duyệt cho đến khi cửa hàng xác minh.</p><a href="/kenh-ban-hang/dang-san-pham" class="btn-primary">Đăng sản phẩm đầu tiên</a></div> }
+    </div>
+</div>

@@ -1,0 +1,129 @@
+@model CheckoutVM
+@{ ViewData["Title"] = "Thanh toán"; var bank = ViewBag.BankSettings as BankSettings; }
+
+<div class="container checkout-page">
+    <div class="page-header">
+        <h1>Thanh toán</h1>
+    </div>
+
+    <div class="demo-notice">⚠️ <strong>Chức năng thử nghiệm:</strong> Đơn hàng demo, không có giao dịch thật.</div>
+
+    <form method="post" class="checkout-layout">
+        <div class="checkout-form">
+            <h2>Thông tin giao hàng</h2>
+
+            @if (Model.SavedAddresses.Any())
+            {
+                <div class="saved-addresses">
+                    <label>Địa chỉ đã lưu:</label>
+                    <div class="address-list">
+                        @foreach (var addr in Model.SavedAddresses)
+                        {
+                            <button type="button" class="address-btn" onclick="fillAddress('@addr.ReceiverName', '@addr.Phone', '@addr.FullAddress')">
+                                <strong>@addr.ReceiverName</strong><br />
+                                @addr.Phone · @addr.FullAddress
+                                @if (addr.IsDefault) { <span class="default-badge">Mặc định</span> }
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="form-group"><label asp-for="CustomerName">Họ tên</label><input asp-for="CustomerName" id="ck-name" required /></div>
+            <div class="form-group"><label asp-for="Phone">Số điện thoại</label><input asp-for="Phone" id="ck-phone" required /></div>
+            <div class="form-group"><label asp-for="Email">Email</label><input asp-for="Email" type="email" required /></div>
+            <div class="form-group"><label asp-for="Address">Địa chỉ</label><textarea asp-for="Address" id="ck-address" rows="3" required></textarea></div>
+            <div class="form-group"><label asp-for="Note">Ghi chú</label><textarea asp-for="Note" rows="2"></textarea></div>
+
+            <div class="form-group">
+                <label>Phương thức thanh toán</label>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" asp-for="PaymentMethod" value="@PaymentMethod.COD" checked />
+                        <span>💵 Thanh toán khi nhận hàng (COD)</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" asp-for="PaymentMethod" value="@PaymentMethod.BankTransfer" />
+                        <span>🏦 Chuyển khoản ngân hàng</span>
+                    </label>
+                </div>
+                @if (bank != null)
+                {
+                    <div class="bank-transfer-card" id="bank-transfer-info" hidden>
+                        <h4>🏦 Thông tin chuyển khoản của cửa hàng</h4>
+                        <p><strong>Ngân hàng:</strong> @bank.BankName</p>
+                        <p><strong>Số tài khoản:</strong> @(string.IsNullOrWhiteSpace(bank.AccountNumber) ? "Chưa được cửa hàng cấu hình" : bank.AccountNumber)</p>
+                        <p><strong>Chủ tài khoản:</strong> @bank.AccountHolder</p>
+                        @if (!string.IsNullOrWhiteSpace(bank.QrImageUrl)) { <img src="@bank.QrImageUrl" alt="Mã QR chuyển khoản" style="max-width:200px;max-height:200px;object-fit:contain" loading="lazy"/> }
+                        <p><strong>Nội dung gợi ý:</strong> @bank.TransferTemplate</p>
+                        <p class="muted small">@bank.Instructions</p>
+                        <p class="muted small">Đơn hàng demo chưa tự xác nhận giao dịch qua ngân hàng. Sau khi đặt hàng, mở trang chi tiết đơn để lấy mã đơn hàng làm nội dung chuyển khoản.</p>
+                    </div>
+                }
+            </div>
+
+            <label class="checkbox-label">
+                <input type="checkbox" asp-for="SaveAddress" />
+                <span>Lưu địa chỉ này cho lần sau</span>
+            </label>
+
+            <input type="hidden" asp-for="CouponCode" />
+        </div>
+
+        <aside class="checkout-summary">
+            <h2>Đơn hàng (@Model.Cart.ItemCount)</h2>
+            <div class="checkout-items">
+                @foreach (var l in Model.Cart.Lines)
+                {
+                    <div class="checkout-item">
+                        <img src="@l.Product.PrimaryImage" alt="" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+                        <div class="checkout-item-info">
+                            <div>@l.Product.Name <span class="muted">×@l.Quantity</span></div>
+                            <div class="price-current">@l.LineTotal.ToString("N0")đ</div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="summary-rows">
+                <div class="summary-row"><span>Tạm tính</span><strong>@Model.Cart.Subtotal.ToString("N0")đ</strong></div>
+                @if (Model.Cart.Discount > 0)
+                {
+                    <div class="summary-row summary-discount">
+                        <span>Giảm giá @(!string.IsNullOrEmpty(Model.Cart.CouponCode) ? $"({Model.Cart.CouponCode})" : "")</span>
+                        <strong>−@Model.Cart.Discount.ToString("N0")đ</strong>
+                    </div>
+                }
+                <div class="summary-row">
+                    <span>Phí vận chuyển</span>
+                    @if (Model.Cart.Shipping == 0) { <strong class="text-success">Miễn phí</strong> }
+                    else { <strong>@Model.Cart.Shipping.ToString("N0")đ</strong> }
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Tổng cộng</span>
+                    <strong>@Model.Cart.Total.ToString("N0")đ</strong>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary btn-lg btn-block">Đặt hàng (thử nghiệm)</button>
+            <p class="text-center muted small" style="margin-top:.75rem">Bằng cách đặt hàng, bạn đồng ý với điều khoản demo.</p>
+        </aside>
+    </form>
+</div>
+
+<script>
+function fillAddress(name, phone, address) {
+    document.getElementById('ck-name').value = name;
+    document.getElementById('ck-phone').value = phone;
+    document.getElementById('ck-address').value = address;
+}
+</script>
+
+
+
+<script>
+(function(){
+ const info=document.getElementById('bank-transfer-info');
+ const radios=document.querySelectorAll('input[name="PaymentMethod"]');
+ function sync(){if(!info)return;const selected=document.querySelector('input[name="PaymentMethod"]:checked');info.hidden=!selected||selected.value!=='BankTransfer'&&selected.value!=='1';}
+ radios.forEach(r=>r.addEventListener('change',sync));sync();
+})();
+</script>

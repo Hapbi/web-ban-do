@@ -1,0 +1,157 @@
+@model CartVM
+@{ ViewData["Title"] = "Giỏ hàng"; }
+
+<div class="container cart-page">
+    @if (Model.IsEmpty)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🛒</div>
+            <h1>Giỏ hàng trống</h1>
+            <p>Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+            <a href="/san-pham" class="btn-primary">Bắt đầu mua sắm</a>
+        </div>
+    }
+    else
+    {
+        <div class="page-header">
+            <div>
+                <h1>Giỏ hàng của bạn</h1>
+                <p class="page-subtitle">@Model.ItemCount sản phẩm · @Model.Lines.Count mặt hàng</p>
+            </div>
+        </div>
+
+        <div class="cart-layout">
+            <div class="cart-items">
+                <div class="freeship-bar">
+                    @if (Model.RemainingForFreeShip > 0)
+                    {
+                        <div class="freeship-text">
+                            🚚 Mua thêm <strong>@Model.RemainingForFreeShip.ToString("N0")đ</strong> để được miễn phí vận chuyển
+                            <span class="freeship-percent">@Model.FreeShipProgress%</span>
+                        </div>
+                        <div class="progress-track"><div class="progress-fill" style="width:@Model.FreeShipProgress%"></div></div>
+                    }
+                    else
+                    {
+                        <div class="freeship-success">✓ Bạn được miễn phí vận chuyển cho đơn này!</div>
+                    }
+                </div>
+
+                @foreach (var l in Model.Lines)
+                {
+                    <div class="cart-line reveal">
+                        <a href="/san-pham/@l.Product.Slug" class="cart-image">
+                            <img src="@l.Product.PrimaryImage" alt="@l.Product.Name" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+                        </a>
+                        <div class="cart-info">
+                            <a href="/san-pham/@l.Product.Slug" class="cart-name">@l.Product.Name</a>
+                            <div class="cart-meta">@l.Product.Brand?.Name · Còn @l.Product.Stock</div>
+                            <div class="cart-price">
+                                <span class="price-current @(l.Product.HasDiscount ? "price-sale" : "")">@l.Product.CurrentPrice.ToString("N0")đ</span>
+                                @if (l.Product.HasDiscount) { <span class="price-original">@l.Product.OriginalPrice.ToString("N0")đ</span> }
+                            </div>
+                            @if (l.HasProblem) { <div class="field-error">⚠ Chỉ còn @l.Product.Stock sản phẩm</div> }
+                        </div>
+                        <div class="cart-controls">
+                            <form method="post" action="/gio-hang/cap-nhat" class="qty-form">
+                                <input type="hidden" name="productId" value="@l.Product.Id" />
+                                <div class="qty-stepper small">
+                                    <button type="button" onclick="updateQty(this, -1)">−</button>
+                                    <input type="number" name="quantity" value="@l.Quantity" min="1" max="@Math.Min(l.Product.Stock, 20)" onchange="this.form.submit()" />
+                                    <button type="button" onclick="updateQty(this, 1)">+</button>
+                                </div>
+                            </form>
+                            <div class="cart-line-total">@l.LineTotal.ToString("N0")đ</div>
+                            <form method="post" action="/gio-hang/xoa">
+                                <input type="hidden" name="productId" value="@l.Product.Id" />
+                                <button type="submit" class="btn-remove" aria-label="Xóa">🗑</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+
+                <div class="cart-actions">
+                    <a href="/san-pham" class="btn-ghost">← Tiếp tục mua sắm</a>
+                    <form method="post" action="/gio-hang/xoa-het" onsubmit="return confirm('Xóa toàn bộ giỏ hàng?')">
+                        <button type="submit" class="btn-text-danger">Xóa toàn bộ</button>
+                    </form>
+                </div>
+
+                @if (Model.SuggestedProducts.Any())
+                {
+                    <section class="section">
+                        <h2>Có thể bạn cũng thích</h2>
+                        <div class="product-grid">
+                            @foreach (var p in Model.SuggestedProducts) { <partial name="_ProductCard" model="p" /> }
+                        </div>
+                    </section>
+                }
+            </div>
+
+            <aside class="cart-summary">
+                <h2>Tóm tắt đơn hàng</h2>
+
+                <form method="post" action="/gio-hang/ma-giam-gia" class="coupon-form">
+                    <input type="text" name="code" placeholder="Nhập mã giảm giá" value="@Model.CouponCode" maxlength="40" />
+                    <button type="submit">Áp dụng</button>
+                </form>
+                @if (!string.IsNullOrWhiteSpace(Model.CouponMessage))
+                {
+                    <p class="small @(Model.CouponCode != null ? "text-success" : "field-error")" role="status">@Model.CouponMessage</p>
+                }
+
+                <div class="summary-rows">
+                    <div class="summary-row"><span>Tạm tính</span><strong>@Model.Subtotal.ToString("N0")đ</strong></div>
+                    @if (Model.Discount > 0)
+                    {
+                        <div class="summary-row summary-discount">
+                            <span>Giảm giá @(!string.IsNullOrEmpty(Model.CouponCode) ? $"({Model.CouponCode})" : "")</span>
+                            <strong>−@Model.Discount.ToString("N0")đ</strong>
+                        </div>
+                    }
+                    <div class="summary-row">
+                        <span>Phí vận chuyển</span>
+                        @if (Model.Shipping == 0) { <strong class="text-success">Miễn phí</strong> }
+                        else { <strong>@Model.Shipping.ToString("N0")đ</strong> }
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Tổng cộng</span>
+                        <strong>@Model.Total.ToString("N0")đ</strong>
+                    </div>
+                </div>
+
+                @if (Model.HasProblems)
+                {
+                    <button disabled class="btn-primary btn-lg btn-block">Điều chỉnh số lượng</button>
+                }
+                else
+                {
+                    <a href="/thanh-toan@(!string.IsNullOrEmpty(Model.CouponCode) ? "?coupon=" + Model.CouponCode : "")"
+                       class="btn-primary btn-lg btn-block">Tiến hành thanh toán →</a>
+                }
+
+                <div class="trust-list">
+                    <div>✓ Bảo hành chính hãng</div>
+                    <div>✓ Đổi trả 7 ngày</div>
+                    <div>✓ Giao toàn quốc</div>
+                    <div>✓ Hỗ trợ 24/7</div>
+                </div>
+            </aside>
+        </div>
+    }
+</div>
+
+<script>
+function updateQty(btn, delta) {
+    const input = btn.parentElement.querySelector('input');
+    const current = parseInt(input.value) || 1;
+    const max = parseInt(input.max) || 20;
+    const next = Math.max(1, Math.min(max, current + delta));
+    if (next !== current) {
+        input.value = next;
+        input.form.submit();
+    }
+}
+</script>
+
+

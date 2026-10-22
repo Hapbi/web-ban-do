@@ -1,0 +1,204 @@
+@model HomeVM
+@{ ViewData["Title"] = "Trang chủ"; }
+
+<!-- HERO PARALLAX -->
+<section class="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge reveal">✨ Chương trình ưu đãi mẫu - giảm đến 30%</div>
+            <h1 class="hero-title reveal">
+                Gia dụng <span class="gradient-text" id="typewriter"></span>
+            </h1>
+            <p class="hero-sub reveal">
+                Khám phá các thiết bị gia dụng theo nhu cầu với giá mẫu dễ tham khảo. Đây là cửa hàng demo: hình ảnh, thông số và giá bán là dữ liệu minh họa.
+            </p>
+            <div class="hero-actions reveal">
+                <a href="/san-pham" class="btn-primary magnetic btn-lg">🛍️ Mua sắm ngay</a>
+                <a href="#flash-sale" class="btn-ghost btn-lg">🔥 Flash Sale</a>
+            </div>
+            <div class="hero-stats reveal">
+                <div class="stat-item">
+                    <strong class="counter" data-target="42">0</strong>
+                    <span>Sản phẩm mẫu</span>
+                </div>
+                <div class="stat-item">
+                    <strong>10</strong>
+                    <span>Danh mục</span>
+                </div>
+                <div class="stat-item">
+                    <strong>4.8</strong>★
+                    <span>Đánh giá mẫu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (Model.Banners.Any())
+{
+    <section class="container home-promo-banners" aria-label="Ưu đãi nổi bật">
+        @foreach (var banner in Model.Banners)
+        {
+            <a class="home-promo-banner" href="@(string.IsNullOrWhiteSpace(banner.LinkUrl) ? "/san-pham" : banner.LinkUrl)" aria-label="@banner.Title">
+                <img src="@banner.ImageUrl" alt="@banner.Title" loading="lazy" />
+                <span>@banner.Title <b>Khám phá →</b></span>
+            </a>
+        }
+    </section>
+}
+
+<!-- CATEGORIES -->
+<section class="section container">
+    <div class="section-head reveal">
+        <h2>Danh mục sản phẩm</h2>
+        <a href="/san-pham">Xem tất cả →</a>
+    </div>
+    <div class="category-grid">
+        @foreach (var c in Model.Categories)
+        {
+            <a href="/san-pham?cat=@c.Slug" class="category-card reveal">
+                <div class="category-icon">@c.Icon</div>
+                <div class="category-name">@c.Name</div>
+            </a>
+        }
+    </div>
+</section>
+
+<!-- FLASH SALE -->
+@if (Model.FlashSale.Any())
+{
+    <section class="section section-dark" id="flash-sale">
+        <div class="container">
+            <div class="section-head light reveal">
+                <h2>🔥 Flash Sale</h2>
+                <div class="countdown" data-ends-in="86400">
+                    <span class="time-block"><strong id="cd-h">00</strong><small>Giờ</small></span>
+                    <span class="time-block"><strong id="cd-m">00</strong><small>Phút</small></span>
+                    <span class="time-block"><strong id="cd-s">00</strong><small>Giây</small></span>
+                </div>
+            </div>
+            <div class="product-grid">
+                @foreach (var p in Model.FlashSale) { <partial name="_ProductCard" model="p" /> }
+            </div>
+        </div>
+    </section>
+}
+
+<!-- FEATURED -->
+<section class="section container">
+    <div class="section-head reveal">
+        <h2>Sản phẩm nổi bật</h2>
+        <a href="/san-pham">Xem tất cả →</a>
+    </div>
+    <div class="product-grid">
+        @foreach (var p in Model.Featured) { <partial name="_ProductCard" model="p" /> }
+    </div>
+</section>
+
+<!-- BRANDS -->
+<section class="section section-muted">
+    <div class="container">
+        <div class="section-head reveal">
+            <h2>Thương hiệu uy tín</h2>
+        </div>
+        <div class="brand-grid">
+            @foreach (var b in Model.Brands)
+            {
+                <a href="/san-pham?brand=@b.Slug" class="brand-item reveal">
+                    <span class="brand-name">@b.Name</span>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="section container">
+    <div class="section-head reveal">
+        <h2>Bán chạy nhất</h2>
+        <a href="/san-pham?sort=popular">Xem tất cả →</a>
+    </div>
+    <div class="product-grid">
+        @foreach (var p in Model.BestSellers) { <partial name="_ProductCard" model="p" /> }
+    </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="section container">
+    <div class="section-head reveal">
+        <h2>Sản phẩm mới</h2>
+        <a href="/san-pham">Xem tất cả →</a>
+    </div>
+    <div class="product-grid">
+        @foreach (var p in Model.NewArrivals) { <partial name="_ProductCard" model="p" /> }
+    </div>
+</section>
+
+<!-- RECENTLY VIEWED -->
+@if (Model.RecentlyViewed.Any())
+{
+    <section class="section container">
+        <div class="section-head reveal">
+            <h2>Bạn đã xem</h2>
+        </div>
+        <div class="product-grid">
+            @foreach (var p in Model.RecentlyViewed) { <partial name="_ProductCard" model="p" /> }
+        </div>
+    </section>
+}
+
+<!-- BLOG -->
+@if (Model.LatestPosts.Any())
+{
+    <section class="section section-muted">
+        <div class="container">
+            <div class="section-head reveal">
+                <h2>Bài viết mới</h2>
+                <a href="/blog">Xem tất cả →</a>
+            </div>
+            <div class="blog-grid">
+                @foreach (var post in Model.LatestPosts)
+                {
+                    <a href="/blog/@post.Slug" class="blog-card reveal">
+                        <img src="@post.CoverImage" alt="@post.Title" loading="lazy" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+                        <div class="blog-body">
+                            <span class="blog-cat">@post.Category</span>
+                            <h3>@post.Title</h3>
+                            <p>@post.Summary</p>
+                            <div class="blog-meta">@post.PublishedAt?.ToString("dd/MM/yyyy") · @post.ViewCount lượt xem</div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<!-- PROMO CARDS -->
+<section class="section container">
+    <div class="promo-grid">
+        <div class="promo-card promo-blue reveal">
+            <div class="promo-icon">🚚</div>
+            <h3>Miễn phí vận chuyển</h3>
+            <p>Cho đơn hàng từ 5.000.000đ trên toàn quốc</p>
+        </div>
+        <div class="promo-card promo-purple reveal">
+            <div class="promo-icon">🛡️</div>
+            <h3>Bảo hành chính hãng</h3>
+            <p>Lên đến 24 tháng, đổi mới trong 30 ngày đầu</p>
+        </div>
+        <div class="promo-card promo-pink reveal">
+            <div class="promo-icon">💳</div>
+            <h3>Thanh toán an toàn</h3>
+            <p>COD hoặc chuyển khoản ngân hàng</p>
+        </div>
+        <div class="promo-card promo-amber reveal">
+            <div class="promo-icon">📞</div>
+            <h3>Hỗ trợ 24/7</h3>
+            <p>Hotline 0855 081 828 - Luôn sẵn sàng</p>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,54 @@
+@model Product
+<article class="product-card reveal" data-product-id="@Model.Id">
+    <a href="/san-pham/@Model.Slug" class="product-image">
+        <img src="@Model.PrimaryImage" alt="@Model.Name" loading="lazy" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+        @if (Model.DiscountPercent > 0)
+        {
+            <span class="badge-discount">-@Model.DiscountPercent%</span>
+        }
+        @if (Model.Stock == 0)
+        {
+            <div class="soldout-overlay"><span>Hết hàng</span></div>
+        }
+        @if (Model.IsFeatured)
+        {
+            <span class="badge-featured">⭐ Nổi bật</span>
+        }
+    </a>
+    <div class="product-body">
+        <div class="product-brand">@Model.Brand?.Name</div>
+        <h3 class="product-title"><a href="/san-pham/@Model.Slug">@Model.Name</a></h3>
+        <div class="product-rating">
+            @{
+                var avg = Math.Round(Model.AverageRating);
+            }
+            <span class="stars">
+                @for (int i = 1; i <= 5; i++) { <span class="@(i <= avg ? "star-filled" : "star-empty")">★</span> }
+            </span>
+            <span class="rating-text">(@Model.ReviewCount)</span>
+            <span class="sold-text">· Đã bán @Model.SoldCount</span>
+        </div>
+        <div class="product-price">
+            <span class="price-current @(Model.HasDiscount ? "price-sale" : "")">@Model.CurrentPrice.ToString("N0")đ</span>
+            @if (Model.HasDiscount) { <span class="price-original">@Model.OriginalPrice.ToString("N0")đ</span> }
+        </div>
+        <div class="product-stock">
+            @if (Model.Stock > 5) { <span class="stock-ok">● Còn hàng</span> }
+            else if (Model.Stock > 0) { <span class="stock-low">● Chỉ còn @Model.Stock</span> }
+            else { <span class="stock-out">● Hết hàng</span> }
+        </div>
+        <div class="product-actions">
+            @if (Model.Stock > 0)
+            {
+                <form method="post" action="/gio-hang/them" class="add-cart-form">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <input type="hidden" name="returnUrl" value="@(Context.Request.Path + Context.Request.QueryString)" />
+                    <button type="submit" class="btn-add-cart">🛒 Thêm giỏ</button>
+                </form>
+            }
+            <a href="/san-pham/@Model.Slug" class="btn-quick-view">Chi tiết</a>
+        </div>
+    </div>
+</article>
+
+

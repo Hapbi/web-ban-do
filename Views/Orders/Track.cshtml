@@ -1,0 +1,47 @@
+@model TrackOrderVM
+@{ ViewData["Title"] = "Tra cứu đơn hàng"; }
+
+<div class="container track-page">
+    <div class="track-header">
+        <h1>🔍 Tra cứu đơn hàng</h1>
+        <p>Nhập mã đơn hàng và số điện thoại để tra cứu trạng thái.</p>
+    </div>
+
+    <form method="post" class="track-form">
+        <div class="form-group"><label asp-for="OrderCode">Mã đơn hàng</label><input asp-for="OrderCode" placeholder="VD: DH241015ABCD" required /></div>
+        <div class="form-group"><label asp-for="Phone">Số điện thoại đặt hàng</label><input asp-for="Phone" placeholder="VD: 0901234567" required /></div>
+        <button type="submit" class="btn-primary btn-lg btn-block">Tra cứu</button>
+    </form>
+
+    @if (Model.Searched)
+    {
+        if (Model.Result == null)
+        {
+            <div class="alert alert-error">Không tìm thấy đơn hàng. Vui lòng kiểm tra lại mã đơn và số điện thoại.</div>
+        }
+        else
+        {
+            <div class="track-result">
+                <div class="track-summary">
+                    <h2>Đơn hàng #@Model.Result.Code</h2>
+                    <span class="status-badge large status-@Model.Result.Status.Color()">@Model.Result.Status.Label()</span>
+                </div>
+                <p class="muted">Đặt lúc @Model.Result.CreatedAt.ToString("dd/MM/yyyy HH:mm") · Tổng: <strong>@Model.Result.Total.ToString("N0")đ</strong></p>
+                <div class="order-timeline">
+                    @foreach (var h in Model.Result.History.OrderBy(h => h.CreatedAt))
+                    {
+                        <div class="timeline-step active">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>@h.Status.Label()</strong>
+                                <div class="muted small">@h.CreatedAt.ToString("dd/MM HH:mm")</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
+
+

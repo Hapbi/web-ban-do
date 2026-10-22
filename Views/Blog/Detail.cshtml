@@ -1,0 +1,13 @@
+@model BlogPost
+@{ ViewData["Title"] = Model.Title; }
+
+<article class="container blog-detail-page">
+    <a href="/blog" class="back-link">← Tất cả bài viết</a>
+    <span class="blog-cat">@Model.Category</span>
+    <h1>@Model.Title</h1>
+    <div class="blog-meta">@Model.PublishedAt?.ToString("dd/MM/yyyy") · @Model.AuthorName · @Model.ViewCount lượt xem</div>
+    <img src="@Model.CoverImage" alt="@Model.Title" class="blog-cover" onerror="this.onerror=null;this.src='/images/products/fallback.svg'" />
+    <div class="blog-content">@Model.Content</div>
+</article>
+
+

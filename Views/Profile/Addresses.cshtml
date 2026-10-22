@@ -1,0 +1,48 @@
+@model List<Address>
+@{ ViewData["Title"] = "Địa chỉ"; }
+
+<div class="container profile-page">
+    <div class="page-header">
+        <h1>Sổ địa chỉ</h1>
+        <a href="/tai-khoan" class="btn-ghost">← Quay lại</a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="address-grid">
+            @foreach (var a in Model)
+            {
+                <div class="address-card">
+                    @if (a.IsDefault) { <span class="default-badge">Mặc định</span> }
+                    <h3>@a.ReceiverName</h3>
+                    <p>@a.Phone</p>
+                    <p>@a.FullAddress</p>
+                    <form method="post" action="/tai-khoan/dia-chi/xoa" onsubmit="return confirm('Xóa địa chỉ?')">
+                        <input type="hidden" name="id" value="@a.Id" />
+                        <button type="submit" class="btn-text-danger">Xóa</button>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="add-address-form">
+        <h2>Thêm địa chỉ mới</h2>
+        <form method="post" action="/tai-khoan/dia-chi/them">
+            <div class="form-row">
+                <div class="form-group"><label>Người nhận</label><input name="receiverName" required /></div>
+                <div class="form-group"><label>Số điện thoại</label><input name="phone" required /></div>
+            </div>
+            <div class="form-group"><label>Địa chỉ (số nhà, đường)</label><input name="addressLine" required /></div>
+            <div class="form-row">
+                <div class="form-group"><label>Phường/Xã</label><input name="ward" /></div>
+                <div class="form-group"><label>Quận/Huyện</label><input name="district" /></div>
+                <div class="form-group"><label>Tỉnh/Thành</label><input name="city" /></div>
+            </div>
+            <label class="checkbox-label"><input type="checkbox" name="isDefault" value="true" /><span>Đặt làm mặc định</span></label>
+            <button type="submit" class="btn-primary">Thêm địa chỉ</button>
+        </form>
+    </div>
+</div>
+
+
